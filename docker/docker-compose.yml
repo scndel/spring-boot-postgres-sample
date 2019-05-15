@@ -1,0 +1,24 @@
+version: '3'
+
+services:
+
+  postgresql:
+    image: 'bitnami/postgresql:latest'
+    container_name: postgres
+    #ports:
+      #- '5432:5432'
+    volumes:
+      - postgresqldata:/bitnami
+    environment:
+      - POSTGRESQL_USERNAME=khaleesi
+      - POSTGRESQL_PASSWORD=winteriscoming
+      - POSTGRESQL_DATABASE=dothraki
+
+  spring-boot:
+    image: 'scndel/spring-boot-postgres-sample:latest'
+    container_name: spring-boot
+    ports:
+      - '8888:8080'
+
+volumes:
+  postgresqldata:

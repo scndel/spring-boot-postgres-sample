@@ -2,10 +2,17 @@
 
 Simple SpringBoot application using a database and provide a basic API.
 
-## Pre requisites
+## Docker
 
-- Java 8 
-- PostgreSQL database (H2 database for development profile)
+You need to have docker installed and to be in the docker directory of this project.
+Then you can just use this command to get a ready stack springboot + postgresql.
+`docker-compose up -d`
+Check docker-compose file to see the external port to use to reach the spring-boot app : for example http://localhost:8888/health
+
+
+### build new image
+Use the Dockerfile provided and add jar file + application.yml in the same directory then run this command :
+`docker build . -t <IMAGE_NAME>`
 
 ## Application Configuration
 
@@ -42,7 +49,7 @@ For the development mode the dev profile load the properties from `src/main/reso
 
 ## Application Usage
 
-To add a user make a **POST** like this example : `http://localhost:8080/user/demis.rizzotto`
+To add a user make a **POST** like this example : `http://localhost:8080/user/jon.snow`
 
 To list all users : `http://localhost:8080/user`
 
