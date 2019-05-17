@@ -2,19 +2,25 @@ version: '3'
 
 services:
 
-  postgresql:
+  db:
     image: 'bitnami/postgresql:latest'
     container_name: postgres
+
+    #service db is reachable inside the network created by this docker-compose; uncomment for external access of DB (for debug, less secure)
     #ports:
       #- '5432:5432'
+
+    #persistence
     volumes:
       - postgresqldata:/bitnami
+
+    #better use docker secret for sensitive values
     environment:
       - POSTGRESQL_USERNAME=khaleesi
       - POSTGRESQL_PASSWORD=winteriscoming
       - POSTGRESQL_DATABASE=dothraki
 
-  spring-boot:
+  api:
     image: 'scndel/spring-boot-postgres-sample:latest'
     container_name: spring-boot
     ports:
